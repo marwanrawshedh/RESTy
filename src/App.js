@@ -29,7 +29,7 @@ function App(props) {
   return (
     <React.Fragment>
       <Header />
-      <div>Request Method: {requestParams.method}</div>
+      <div>Request Method: {requestParams.method }</div>
       <div>URL: {requestParams.url}</div>
       <Form handleApiCall={callApi} />
       <Results data={data} />
