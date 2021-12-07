@@ -3,9 +3,9 @@ import ReactJson from 'react-json-view'
 function Results(props) {
   return (
     <>
-    <h2> Results </h2>
+    <h2 data-testid="data" > Results </h2>
     
-    <ReactJson src={props.data} />
+    <ReactJson src={props.data} data-testid="data" />
     </>
   );
 }
