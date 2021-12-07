@@ -19,7 +19,7 @@ function Form(props) {
         <label>
           <span>URL: </span>
           <input name="url" type="text" defaultValue="https://jsonplaceholder.typicode.com/todos" />
-          <button data-testid="click-form" className="button-64" type="submit">GO!</button>
+          <button data-testid="click-form"  type="submit">GO!</button>
         </label>
       </form>
       <textarea className="textarea" name="textarea" rows="4" cols="50">
