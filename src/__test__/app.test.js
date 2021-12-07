@@ -14,5 +14,5 @@ test('Assert that upon submitting the form will result in data being rendered in
     fireEvent.change(button, { target: { value: "" } });
 
   
-  expect(data).toHaveTextContent('{}');
+  expect(data).toHaveTextContent('Results');
 });
