@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import "./form.scss";
 
 function Form(props) {
-  const [methods, setMethods] = useState("GET");
+  const [method,setMethod]=useState();
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
-      method: methods,
+      method: method,
       url: e.target.url.value,
-      // url: "e.target.url.value",
     };
     props.handleApiCall(formData);
+
   };
   return (
     // <>
@@ -29,7 +29,7 @@ function Form(props) {
         <button
           className="button-64"
           onClick={() => {
-            setMethods((methods) => "GET");
+            setMethod((methods) => "GET");
           }}
         >
           <span className="text">GET</span>
@@ -38,7 +38,7 @@ function Form(props) {
         <button
           className="button-64"
           onClick={() => {
-            setMethods((methods) => "POST");
+            setMethod((methods) => "POST");
           }}
         >
           <span className="text">POST</span>
@@ -47,7 +47,7 @@ function Form(props) {
         <button
           className="button-64"
           onClick={() => {
-            setMethods((methods) => "PUT");
+            setMethod((methods) => "PUT");
           }}
           id="PUT"
         >
@@ -57,7 +57,7 @@ function Form(props) {
         <button
           className="button-64"
           onClick={() => {
-            setMethods((methods) => "DELETE");
+            setMethod((methods) => "DELETE");
           }}
         >
           <span className="text">DELETE</span>
