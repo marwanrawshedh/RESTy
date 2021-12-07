@@ -32,7 +32,7 @@ function Form(props) {
             setMethods((methods) => "GET");
           }}
         >
-          <span class="text">GET</span>
+          <span className="text">GET</span>
           
         </button>
         <button
@@ -41,7 +41,7 @@ function Form(props) {
             setMethods((methods) => "POST");
           }}
         >
-          <span class="text">POST</span>
+          <span className="text">POST</span>
           
         </button>
         <button
@@ -51,7 +51,7 @@ function Form(props) {
           }}
           id="PUT"
         >
-          <span class="text"> PUT</span>
+          <span className="text"> PUT</span>
          
         </button>
         <button
@@ -60,7 +60,7 @@ function Form(props) {
             setMethods((methods) => "DELETE");
           }}
         >
-          <span class="text">DELETE</span>
+          <span className="text">DELETE</span>
           
         </button>
       </section>
