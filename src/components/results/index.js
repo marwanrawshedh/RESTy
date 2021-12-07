@@ -1,10 +1,12 @@
 import React from 'react';
-
+import ReactJson from 'react-json-view'
 function Results(props) {
   return (
-    <section >
-    <pre data-testid="data" >{props.data ? JSON.stringify(props.data, undefined, 2) : null}</pre>
-  </section>
+    <>
+    <h2> Results </h2>
+    
+    <ReactJson src={props.data} />
+    </>
   );
 }
 

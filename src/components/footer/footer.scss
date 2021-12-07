@@ -1,8 +1,14 @@
-@import "../../app.scss";
+
 footer {
-    background: darken($backgroundColor, 50);
+  background-color: #2d2d2d ;
     border-top: 1px solid #eee;
     padding: 1em 3em;
     margin: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: azure;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace
   }
   

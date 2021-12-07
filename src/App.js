@@ -12,13 +12,16 @@ import Results from "./components/results";
 function App(props) {
   const [data, setData] = useState({});
   const [requestParams, setRequestParams] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const callApi = (requestParams) => {
     // mock output
+    setIsLoading(true);
     axios
       .get(requestParams.url)
       .then((res) => {
         setData((faker) => res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -32,7 +35,9 @@ function App(props) {
       <div>Request Method: {requestParams.method }</div>
       <div>URL: {requestParams.url}</div>
       <Form handleApiCall={callApi} />
-      <Results data={data} />
+      {isLoading && <h1>Loading ...</h1>}
+      {!isLoading && 
+      <Results data={data} />}
       <Footer />
     </React.Fragment>
   );
