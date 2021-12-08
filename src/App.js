@@ -1,53 +1,67 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import "./app.scss";
 import axios from "axios";
-// Let's talk about using index.js and some other name in the component folder
-// There's pros and cons for each way of doing this ...
+import History from "./components/history/History";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Form from "./components/form";
 import Results from "./components/results";
-
+const initialState = {
+  data: {},
+  isLoading: false,
+  methods: { method: "", url: "{}" },
+  history: [],
+};
+const reducer = (state = initialState, action) => {
+  switch (action.s) {
+    case "data":
+      return { ...state, data: action.d };
+    case "method":
+      return { ...state, methods: action.d };
+    case "false":
+      return { ...state, isLoading: action.d };
+    case "true":
+      return { ...state, isLoading: action.d };
+    default:
+      return state;
+  }
+};
 function App(props) {
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [methods, setMethods] = useState({
-    method: "",
-    url: "{}",
-  });
+  const [red, dispatch] = useReducer(reducer, initialState);
+
   useEffect(() => {
-    
-    setIsLoading(true);
+    if(!(red.methods.url === "{}")){
+    let tr = { s: "false", d: true };
+    let fs = { s: "true", d: false };
+    dispatch(tr);
+    red.history.push(red.methods);
     axios
-      .get(methods.url)
+      .get(red.methods.url)
       .then((res) => {
-        setData((faker) => res.data);
-        setIsLoading(false);
+        const m = { s: "data", d: res.data };
+        dispatch(m);
+        dispatch(fs);
       })
       .catch((err) => {
-        console.log(err);
-        setIsLoading(false);
-      });
-      
-  }, [methods.url, methods.method]);
+        dispatch(fs);
+      });}
+  }, [red.methods.url, red.methods.method]);
 
   const callApi = (formData) => {
-    
-
-    setMethods(formData);
-
-    
+    let form = { s: "method", d: formData };
+    dispatch(form);
   };
 
   return (
     <React.Fragment>
       <Header />
-      <div>Request Method: {methods.method }</div>
-      <div>URL: {methods.url}</div>
+      <div>Request Method: {red.methods.method}</div>
+      <div>URL: {red.methods.url}</div>
       <Form handleApiCall={callApi} />
-      {isLoading && <h1>Loading ...</h1>}
-      {!isLoading && <Results data={data} />}
+      {red.isLoading && <h1>Loading ...</h1>}
+      {!red.isLoading && <Results data={red.data} />}
+      <History history={red.history} handleApiCall={callApi} />
       <Footer />
     </React.Fragment>
   );

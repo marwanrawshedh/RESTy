@@ -4,7 +4,7 @@ function Results(props) {
   return (
     <>
     <h2 data-testid="data" > Results </h2>
-    
+    {/* {console.log(props.data,"sss")} */}
     <ReactJson src={props.data} data-testid="data" />
     </>
   );
